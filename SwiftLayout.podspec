@@ -9,7 +9,7 @@ Pod::Spec.new do |spec|
     spec.platform         = :ios, '10.0'
     spec.swift_version    = '4.2'    
     spec.ios.deployment_target = '10.0'
-    app.source_files      = 'SwiftLayout/**/*.swift'
+    spec.source_files     = 'SwiftLayout/**/*.swift'
     spec.framework        = 'UIKit'
     spec.requires_arc     = true
 end
