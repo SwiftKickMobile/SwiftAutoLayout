@@ -9,7 +9,11 @@
 import Foundation
 import UIKit
 
-protocol ConstraintBuilder {
+/**
+ Protocol for defining constraint builders.
+ All builders should be able to return their constraints in the order they've been built.
+ */
+public protocol ConstraintBuilder {
     var constraints: [NSLayoutConstraint] { get }
 }
 
@@ -18,13 +22,12 @@ extension ConstraintBuilder {
      Attempts to create a constraint between `first` and `second` anchors without activating it.
      - Note: Will inverse the `first` and `second` anchors if parameter `inverse` is true — useful for creating constraints relating to `trailingAnchor` or `bottomAnchor`s
      - Parameters:
-     - criteria: The criteria for defining the constraint. If nil, this method immediately returns nil without doing anything.
      - first: The first anchor to constrain against the second.
      - second: The second anchor to which the first is constraining.
      - inverse: Optional — If true, the `first` and `second` anchors will be inverted when creating this constraint. Useful for keeping constants positive. Defaults to `false`.
-     - Returns: The created constraint, if `criteria` was not nil. This method does not activate the constraint.
+     - Returns: The created constraint. This method does not activate the constraint.
      */
-    func makeConstraint<T>(first rawFirst: ConstrainableInfo<T>, second rawSecond: ConstrainableInfo<T>, relation: NSLayoutConstraint.Relation, constant: CGFloat, multiplier: CGFloat, priority: UILayoutPriority, activate: Bool, inverse: Bool = false) -> NSLayoutConstraint {
+    func makeConstraint<T>(first rawFirst: AnchorInfo<T>, second rawSecond: AnchorInfo<T>, relation: NSLayoutConstraint.Relation, constant: CGFloat, multiplier: CGFloat, priority: UILayoutPriority, activate: Bool, inverse: Bool = false) -> NSLayoutConstraint {
         let first = inverse ? rawSecond : rawFirst
         let second = inverse ? rawFirst : rawSecond
         let constraint: NSLayoutConstraint

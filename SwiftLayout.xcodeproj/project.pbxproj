@@ -22,6 +22,11 @@
 		22AEE39F21A106DB00295C85 /* RelationalConstraintBuilder+Edges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AEE39521A106DB00295C85 /* RelationalConstraintBuilder+Edges.swift */; };
 		22AEE3A021A106DB00295C85 /* SelfConstraintBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AEE39621A106DB00295C85 /* SelfConstraintBuilder.swift */; };
 		22AEE3A221A1078200295C85 /* SwiftLayout.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 22AEE3A121A1078200295C85 /* SwiftLayout.podspec */; };
+		61374AEF21ADF45700E543BC /* RelationalConstraintBuilder+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61374AEE21ADF45700E543BC /* RelationalConstraintBuilder+Custom.swift */; };
+		61374AF121ADF4AA00E543BC /* Constrainable+Builders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61374AF021ADF4AA00E543BC /* Constrainable+Builders.swift */; };
+		61374AF321ADF4CA00E543BC /* AnchorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61374AF221ADF4CA00E543BC /* AnchorInfo.swift */; };
+		61374AF521ADF4EA00E543BC /* Constrainable+Anchors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61374AF421ADF4EA00E543BC /* Constrainable+Anchors.swift */; };
+		61374AF721ADF52500E543BC /* CGFloat+SystemSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61374AF621ADF52500E543BC /* CGFloat+SystemSpacing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +47,11 @@
 		22AEE39521A106DB00295C85 /* RelationalConstraintBuilder+Edges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RelationalConstraintBuilder+Edges.swift"; sourceTree = "<group>"; };
 		22AEE39621A106DB00295C85 /* SelfConstraintBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfConstraintBuilder.swift; sourceTree = "<group>"; };
 		22AEE3A121A1078200295C85 /* SwiftLayout.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftLayout.podspec; sourceTree = "<group>"; };
+		61374AEE21ADF45700E543BC /* RelationalConstraintBuilder+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RelationalConstraintBuilder+Custom.swift"; sourceTree = "<group>"; };
+		61374AF021ADF4AA00E543BC /* Constrainable+Builders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constrainable+Builders.swift"; sourceTree = "<group>"; };
+		61374AF221ADF4CA00E543BC /* AnchorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorInfo.swift; sourceTree = "<group>"; };
+		61374AF421ADF4EA00E543BC /* Constrainable+Anchors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constrainable+Anchors.swift"; sourceTree = "<group>"; };
+		61374AF621ADF52500E543BC /* CGFloat+SystemSpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+SystemSpacing.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +89,9 @@
 			isa = PBXGroup;
 			children = (
 				22AEE39421A106DB00295C85 /* Constrainable.swift */,
+				61374AF021ADF4AA00E543BC /* Constrainable+Builders.swift */,
+				61374AF421ADF4EA00E543BC /* Constrainable+Anchors.swift */,
+				61374AF221ADF4CA00E543BC /* AnchorInfo.swift */,
 				22AEE38D21A106DB00295C85 /* ConstraintBuilder.swift */,
 				22AEE39021A106DB00295C85 /* DistributiveConstraintBuilder.swift */,
 				22AEE39121A106DB00295C85 /* DistributiveConstraintBuilder+Edges.swift */,
@@ -86,8 +99,10 @@
 				22AEE39321A106DB00295C85 /* RelationalConstraintBuilder+Dimensions.swift */,
 				22AEE39521A106DB00295C85 /* RelationalConstraintBuilder+Edges.swift */,
 				22AEE38E21A106DB00295C85 /* RelationalConstraintBuilder+Spacing.swift */,
+				61374AEE21ADF45700E543BC /* RelationalConstraintBuilder+Custom.swift */,
 				22AEE39621A106DB00295C85 /* SelfConstraintBuilder.swift */,
 				22AEE38F21A106DB00295C85 /* SelfConstraintBuilder+Dimensions.swift */,
+				61374AF621ADF52500E543BC /* CGFloat+SystemSpacing.swift */,
 				22AEE38521A1056800295C85 /* SwiftLayout.h */,
 				22AEE38621A1056800295C85 /* Info.plist */,
 			);
@@ -177,12 +192,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61374AEF21ADF45700E543BC /* RelationalConstraintBuilder+Custom.swift in Sources */,
+				61374AF121ADF4AA00E543BC /* Constrainable+Builders.swift in Sources */,
 				22AEE39A21A106DB00295C85 /* DistributiveConstraintBuilder.swift in Sources */,
+				61374AF521ADF4EA00E543BC /* Constrainable+Anchors.swift in Sources */,
+				61374AF721ADF52500E543BC /* CGFloat+SystemSpacing.swift in Sources */,
 				22AEE39721A106DB00295C85 /* ConstraintBuilder.swift in Sources */,
 				22AEE39D21A106DB00295C85 /* RelationalConstraintBuilder+Dimensions.swift in Sources */,
 				22AEE39E21A106DB00295C85 /* Constrainable.swift in Sources */,
 				22AEE3A021A106DB00295C85 /* SelfConstraintBuilder.swift in Sources */,
 				22AEE39821A106DB00295C85 /* RelationalConstraintBuilder+Spacing.swift in Sources */,
+				61374AF321ADF4CA00E543BC /* AnchorInfo.swift in Sources */,
 				22AEE39F21A106DB00295C85 /* RelationalConstraintBuilder+Edges.swift in Sources */,
 				22AEE39C21A106DB00295C85 /* RelationalConstraintBuilder.swift in Sources */,
 				22AEE39921A106DB00295C85 /* SelfConstraintBuilder+Dimensions.swift in Sources */,

@@ -21,9 +21,11 @@ public class SelfConstraintBuilder: ConstraintBuilder {
         }
     }
     
-    func makeDimensionConstraint(anchor: NSLayoutDimension, relation: NSLayoutConstraint.Relation, constant: CGFloat, priority: UILayoutPriority, activate: Bool) -> NSLayoutConstraint {
-        if constant == .systemSpacing {
-            print("[SwiftLayout] Unsupported usage of `CGFloat.systemSpacing` with `SelfConstraintBuilder`!")
+    func makeDimensionConstraint(anchor: NSLayoutDimension, relation: NSLayoutConstraint.Relation, constant rawConstant: CGFloat, priority: UILayoutPriority, activate: Bool) -> NSLayoutConstraint {
+        var constant = rawConstant
+        if #available(iOS 11, *), constant == .systemSpacing {
+            print("[SwiftLayout] Unsupported usage of `CGFloat.systemSpacing` with `SelfConstraintBuilder`! Using `8` as a placeholder value")
+            constant = 8
         }
         let result: NSLayoutConstraint
         switch relation {
