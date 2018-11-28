@@ -14,6 +14,8 @@ Here's why it exists *****************
 
 What it does, what it doesn't do *************
 
+## Usage
+
 ### Constraining a View to a Parent View
 
 Start by thinking about which two views you want to affect. In this example, a label will be constrained to a `UIViewController`'s view and added to its hierarchy.
@@ -51,10 +53,10 @@ let label = UILabel()
 label.constrain(to: container.layoutMarginsGuide).leadingTrailingTopBottom()
 
 // Ensure the label doesn't get wider than our view within a constant. 
-// Since it is a child of container by this point, SwiftLayout doesn't touch its parent.
+// Since label is a child of container by this point, SwiftLayout doesn't set its parent.
 label.constrain(to: view).width(.lessThanOrEqual, constant: -60, priority: .defaultHigh)
 
-// View hierarchy is now
+// The view hierarchy is now:
 // view
 //  └ container
 //     └ label
@@ -95,7 +97,7 @@ SwiftLayout has 3 main methods for creating different constraint builders suited
 
 - `constrain(to:)` returns a `RelationalConstraintBuilder` that is useful for embedding a view inside another and matching its anchors. In uncommon scenarios where you want to define a constraint between two different anchors, use this builder's `xAxis(_:to:)`, `yAxis(_:to:)`, and `dimension(_:to:)` methods.
 
-- `constrain(after:)` returns a `DistributiveConstraintBuilder` that has a couple methods for placing this view vertically or horizontally after another.
+- `constrain(after:)` returns a `DistributiveConstraintBuilder` that has a couple methods for placing this view vertically or horizontally after another. This builder expects its views and layout guides to already have parents.
 
 - `constrainSelf()` returns a `SelfConstraintBuilder` which is great for constraining your view's width, height, or aspect ratio.
 
@@ -120,6 +122,12 @@ let constraints = label.constrain(to: view).leadingTrailingTopBottom().constrain
 print(constraints.count) // 4
 ```
 
+### Advanced Something
+
+- Mention xAxis / yAxis / dimension custom stuff
+
+## Ideology
+
 ### Note about Left and Right Anchors
 
 - Use leading and trailing
@@ -133,6 +141,11 @@ print(constraints.count) // 4
 - Use accessibilityIdentifier
 - Use NSDirectionalEdgeInsets
 - Use layout guides
+
+### Room for Improvement
+
+- macOS support (pull request?)
+- baseline anchors (sorry)
 
 ## Installation
 
