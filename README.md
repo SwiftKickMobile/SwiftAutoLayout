@@ -26,21 +26,24 @@ override func viewDidLoad() {
    label.text = "SwiftLayout is neato!"
    
    // Constrain its leading and centerY anchors to be equal to our view's respective anchors
-   // because label doesn't yet have a parent, it will become a child of view
+   // Because label doesn't yet have a parent, it will become a child of view
    label.constrain(to: view).leading().centerY()
 }
 ```
 
+### Building the view hierarchy
+
 The `constrain(to:)` method performs a couple useful actions before any constraints are made. The view calling it will have its `translatesAutoResizingMasksIntoConstraints` disabled, and will become a child of the second view if it doesn't yet have a parent. This makes it easy to define your view hierarchy while building constraints at the same time.
 
 ```swift
+// Wrap a label in a container view that has a grey background and some internal padding.
 let container = UIView()
 container.backgroundColor = .gray
 container.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
 container.constrain(to: view).centerXY()
 
 // Constraining this label to the layout margins guide of the container means we
-// get padding for free! No need to define them in these constraints.
+// get padding for free! No need to define constants in these constraints.
 let label = UILabel()
 label.constrain(to: container.layoutMarginsGuide).leadingTrailingTopBottom()
 
@@ -53,8 +56,13 @@ label.constrain(to: container.layoutMarginsGuide).leadingTrailingTopBottom()
 SwiftLayout makes use of optional arguments to provide clean code when the constraint criteria of an `.equal` relationship, constant of 0, multiplier of 1, and priority of `.required` are used. To specify custom values, supply the appropriate method with an argument.
 
 ```swift
-// Simple left padding of 16 points
+// Simple leading padding of 16 points
 label.constrain(to: view).leading(constant: 16)
+
+// Simple trailing padding of 16 points. 
+// NOTE: Constraints between trailing and bottom anchors have their items reversed
+// so your constants can always be positive when insetting!
+label.constrain(to: view).trailing(constant: 16)
 
 // Get as customized as you like!
 label.constrain(to: view).top(.greaterThanOrEqual, constant: 8, multiplier: 0.5, priority: .defaultLow)
