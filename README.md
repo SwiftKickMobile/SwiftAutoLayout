@@ -195,7 +195,7 @@ buttonsLayoutGuide.constrainSelf().height(constant: 60)
 let buttons = [UIButton(), UIButton(), UIButton()]
 buttons.forEach { $0.constrainSelf().widthHeight(constant: 40) }
 zip(buttons, [0.5, 1.0, 1.5]) { (button, multiplier)
-   button.constrain(to: buttonsLayoutGuide).centerX(multiplier: multiplier)
+   button.constrain(to: buttonsLayoutGuide).centerX(multiplier: multiplier).centerY()
 }
 ```
 
