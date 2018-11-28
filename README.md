@@ -10,7 +10,7 @@
 
 SwiftLayout helps you write AutoLayout constraints as consisely, Swiftly, and as natively as possible. Constrain `UIView` and `UILayoutGuide`s interchangeably with a familiar syntax named to match their native properties. This library purposefuly minimizes the repetitive code of defining view hierarchies and building constraints while maximizing constraint flexibility via optional parameters.
 
-SwiftLayout is written to match the AutoLayout APIs as closely as possible, only wrapping types where it improves legibility and simplifies amount of written code. This means your knowledge of AutoLayout should translate directly into SwiftLayout, with minimal functionality introduced on top. SwiftLayout does not provide any custom closures or syntaxes for defining constraints, and prefers a functional proramming angle to keep things on a minimum number of lines.
+SwiftLayout is written to match the AutoLayout APIs as closely as possible, only wrapping types where it improves legibility and simplifies amount of written code. This means your knowledge of AutoLayout directly translates to SwiftLayout, with minimal functionality introduced on top. SwiftLayout does not provide any custom closures or syntaxes for defining constraints, and prefers a functional proramming angle to keep things on a minimum number of lines.
 
 ## Usage
 
@@ -28,7 +28,7 @@ override func viewDidLoad() {
    label.text = "SwiftLayout is neato!"
    
    // Constrain its leading and centerY anchors to be equal to our view's respective anchors
-   // Because label doesn't yet have a parent, it will become a child of view
+   // Because label doesn't yet have a parent, it will become a child of our view
    label.constrain(to: view).leading().centerY()
 }
 ```
@@ -93,7 +93,7 @@ label.constrain(to: view.layoutMarginsGuide).leadingTrailingTopBottom()
 
 SwiftLayout has 3 main methods for creating different constraint builders suited for different tasks.
 
-- `constrain(to:)` returns a [`RelationalConstraintBuilder`](./SwiftLayout/RelationalConstraintBuilder.swift) that is useful for embedding a view inside another and matching its anchors. In uncommon scenarios where you want to define a constraint between two different anchors, use this builder's `xAxis(_:to:)`, `yAxis(_:to:)`, and `dimension(_:to:)` methods.
+- `constrain(to:)` returns a [`RelationalConstraintBuilder`](./SwiftLayout/RelationalConstraintBuilder.swift) that is useful for embedding a view inside another and creating constraints that match anchors. In uncommon scenarios where you want to define a constraint between two different anchors, use this builder's `xAxis(_:to:)`, `yAxis(_:to:)`, and `dimension(_:to:)` methods.
 
 - `constrain(after:)` returns a [`DistributiveConstraintBuilder`](./SwiftLayout/DistributiveConstraintBuilder.swift) that has a couple methods for placing this view vertically or horizontally after another. This builder expects its views and layout guides to already have parents.
 
@@ -120,7 +120,7 @@ let constraints = label.constrain(to: view).leadingTrailingTopBottom().constrain
 print(constraints.count) // 4
 ```
 
-### Advanced Something
+### System Spacing
 
 You can specify constraints that use system spacing for their "constant" in iOS 11 and later. This is accomplished by an extension on `CGFloat` named `.systemSpacing` — which is a special placeholder value SwiftLayout will take into account when creating your constraint. This value has no use outside of SwiftLayout, and only works with the `constrain(to:)` builder.
 
@@ -128,16 +128,18 @@ You can specify constraints that use system spacing for their "constant" in iOS 
 label.constrain(to: view).leadingTrailing(constant: .systemSpacing)
 ```
 
+### Custom Constraints
+
 In scenarios where you want to make a custom constraint between two different anchors, use the appropriate method after `constrain(to:)`. The need for specialized methods for `T` in `NSLayoutAnchor<T>` makes creating these custom constraints type-safe and more crash resistant.
 
 ```swift
-// constrain label's centerXAnchor to view's leadingAnchor
+// NSLayoutXAxisAnchor: Constrain label's centerXAnchor to view's leadingAnchor
 label.constrain(to: view).xAxis(.centerX, to: .leading)
 
-// constrain label's centerYAnchor to view's topAnchor
+// NSLayoutYAxisAnchor: Constrain label's centerYAnchor to view's topAnchor
 label.constrain(to: view).yAxis(.centerY, to: .top)
 
-// constrain label's width to view's height
+// NSLayoutDimension: Constrain label's widthAnchor to view's heightAnchor
 label.constrain(to: view).dimension(.width, to: .height)
 ```
 
@@ -147,22 +149,51 @@ label.constrain(to: view).dimension(.width, to: .height)
 
 SwiftLayout does not use left and right anchors. This simplifies x axis anchors usage by disallowing incorrect usage (mixing left and leading) and cleans up autocomplete. [Apple states](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/AnatomyofaConstraint.html) you should use leading and trailing anchors always, and in scenarios where you want your constraints to not be affected by language direction, change your view's [`semanticContentAttribute`](https://developer.apple.com/documentation/uikit/uiview/1622461-semanticcontentattribute).
 
-> Avoid using Left and Right attributes. Use Leading and Trailing instead. This allows the layout to adapt to the view’s reading direction.
+> Avoid using Left and Right attributes. Use Leading and Trailing instead. This allows the layout to adapt to the view’s reading direction. 
 
 > By default the reading direction is determined based on the current language set by the user. However, you can override this where necessary. In iOS, set the [`semanticContentAttribute`](https://developer.apple.com/documentation/uikit/uiview/1622461-semanticcontentattribute) property on the view holding the constraint (the nearest common ancestor of all views affected by the constraint) to specify whether the content’s layout should be flipped when switching between left-to-right and right-to-left languages.
 
-### Tips, Tricks, and Gotchas
+## Tips, Tricks, and Gotchas
 
-- Work from the bottom up the hierarchy (there's a reason it's `constrain(after:)`)
-- Define constraints in view did load
-- Use accessibilityIdentifier
-- Use NSDirectionalEdgeInsets
-- Use layout guides
+### Custom Parents
 
-### Room for Improvement
+If you have a special scenario where you want a view's parent to not be set when using `constrain(to:)`, just set its parent beforehand. SwiftLayout's goal is to simplify hierarchy generation and ensure a view has a parent when constraints are created, and it will not change a hierarchy once it exists.
 
-- macOS support (pull request?)
-- baseline anchors (sorry)
+### Work from the Bottom Up
+
+When defining your view hierarchy, it's best to start by defining and constraining the first views to become children of your root view and constraining children views after. In general, you want to use `constrain(to:)` before you use `constrain(after:)` since the latter expects both views/layout guides to have parents. `constrainSelf()` can be called at any time, the view doesn't need a parent for a self constraint.
+
+### Define Constraints Conistently
+
+It's easy to attempt to compartmentalize all your constraint code with your view setup code, but it is recommended to set up all of your constraints in a place where your root view controller has a parent. For view controllers, set up your constraints in `viewDidLoad()` or later, and avoid defining constraints in a `UIView` or `UIViewController` initializer.
+
+### Debugging Constraint Issues
+
+As a reminder, setting a view's [`accessibilityIdentifier`](https://developer.apple.com/documentation/uikit/uiaccessibilityidentification/1623132-accessibilityidentifier) to a concise string will help you identify problem views when constrain errors are printed.
+
+### Use Layout Guides!
+
+`UILayoutGuide`s are awesome. If you set up your views correctly and use their [`directionalLayoutMargins`](https://developer.apple.com/documentation/uikit/uiview/2865930-directionallayoutmargins) you can write elegant constraints with minimal constants. Since SwiftLayout doesn't use left and right anchors, it's recommended to use [`NSDirectionalEdgeInsets`](https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsets) when setting up your layout guides.
+
+You can also create new layout guides instead of views when you need to simplify view layout.
+
+```swift
+let buttonsLayoutGuide = UILayoutGuide()
+buttonsLayoutGuide.constrain(to: view.layoutMarginsGuide).leadingTrailing().bottom()
+buttonsLayoutGuide.constrainSelf().height(constant: 60)
+
+let buttons = [UIButton(), UIButton(), UIButton()]
+buttons.forEach { $0.constrainSelf().widthHeight(constant: 40) }
+zip(buttons, [0.5, 1.0, 1.5]) { (button, multiplier)
+   button.constrain(to: buttonsLayoutGuide).centerX(multiplier: multiplier)
+}
+```
+
+## Room for Improvement
+
+As of now, SwiftLayout does not support AppKit, but is open to pull requests!
+
+SwiftLayout does not support anchors that both `UIView` and `UILayoutGuide` have, so `firstBaselineAnchor` and `lastBaselineAnchor` are not yet supported. Again, pull requests are welcome!
 
 ## Installation
 
