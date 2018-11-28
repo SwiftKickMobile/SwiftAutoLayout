@@ -4,7 +4,7 @@ Pod::Spec.new do |spec|
     spec.license          = { :type => 'MIT' }
     spec.homepage         = 'https://github.com/SwiftKickMobile/SwiftLayout'
     spec.authors          = { 'Timothy Moose' => 'tim@swiftkick.it' }
-    spec.summary          = 'Super awesome Auto Layout constraint simplifier for Swift.'
+    spec.summary          = 'Write constraints in a concise, expressive, Swifty way.'
     spec.source           = {:git => 'https://github.com/SwiftKickMobile/SwiftLayout.git', :tag => spec.version}
     spec.platform         = :ios, '10.0'
     spec.swift_version    = '4.2'    
