@@ -33,6 +33,8 @@ override func viewDidLoad() {
 }
 ```
 
+That's it! The label is now in the hierarchy and constrained correctly.
+
 ### Building the View Hierarchy
 
 The `constrain(to:)` method performs a couple useful actions before any constraints are made. The view calling it will have its `translatesAutoResizingMasksIntoConstraints` disabled, and will become a child of the second view if it doesn't yet have a parent. This makes it easy to define your view hierarchy while building constraints at the same time.
@@ -62,7 +64,7 @@ label.constrain(to: view).width(.lessThanOrEqual, constant: -60, priority: .defa
 
 ### Customizing Constraints
 
-SwiftLayout makes use of optional arguments to provide clean code when the constraint criteria of an `.equal` relationship, constant of 0, multiplier of 1, priority of `.required` are used and you want the constraint activated upon creation. To specify custom values, supply the appropriate method with an argument.
+SwiftLayout makes use of optional arguments to provide clean code when the constraint criteria is an `.equal` relationship, has a constant of 0, multiplier of 1, priority of `.required` and should activate the constraint upon creation. To specify custom values, supply the appropriate method with an argument.
 
 ```swift
 // Simple leading padding of 16 points
@@ -118,6 +120,14 @@ constraint.constant = 100
 // This should be clear based on method name, and their documentation will specify constraint count.
 let constraints = label.constrain(to: view).leadingTrailingTopBottom().constraints
 print(constraints.count) // 4
+
+// You can put constraints on their own lines thanks to functional chanining. Here we 
+// dynamically activate a constraint later, as such its priority must be lower than `.required`
+let constraint = label.constrainSelf()
+   .height(constant: 0, priority: .required - 1, activate: false)
+   .constraints.last!
+   
+constraint.isActive = true // smoosh!
 ```
 
 ### System Spacing
