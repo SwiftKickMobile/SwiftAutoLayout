@@ -46,8 +46,13 @@ container.constrain(to: view).centerXY()
 
 // Constrain a label to the layout margins guide of the container. This means we
 // get padding for free! No need to define constants in these constraints.
+// Label will become a child of the layout guide's owning view.
 let label = UILabel()
 label.constrain(to: container.layoutMarginsGuide).leadingTrailingTopBottom()
+
+// Ensure the label doesn't get wider than our view within a constant. 
+// Since it is a child of container by this point, SwiftLayout doesn't touch its parent.
+label.constrain(to: view).width(.lessThanOrEqual, constant: -60, priority: .defaultHigh)
 
 // View hierarchy is now
 // view
@@ -115,7 +120,7 @@ let constraints = label.constrain(to: view).leadingTrailingTopBottom().constrain
 print(constraints.count) // 4
 ```
 
-### Note about leading and trailing
+### Note about left and right anchors
 
 - Use leading and trailing
 - Don't use left/right
@@ -123,6 +128,7 @@ print(constraints.count) // 4
 
 ### Tips, tricks, and gotchas
 
+- Work from the bottom up the hierarchy (there's a reason it's `constrain(after:)`)
 - Define constraints in view did load
 - Use accessibilityIdentifier
 - Use NSDirectionalEdgeInsets
