@@ -14,7 +14,7 @@ Here's why it exists *****************
 
 What it does, what it doesn't do *************
 
-### Constraining a view to a parent view
+### Constraining a View to a Parent View
 
 Start by thinking about which two views you want to affect. In this example, a label will be constrained to a `UIViewController`'s view and added to its hierarchy.
 
@@ -33,7 +33,7 @@ override func viewDidLoad() {
 }
 ```
 
-### Building the view hierarchy
+### Building the View Hierarchy
 
 The `constrain(to:)` method performs a couple useful actions before any constraints are made. The view calling it will have its `translatesAutoResizingMasksIntoConstraints` disabled, and will become a child of the second view if it doesn't yet have a parent. This makes it easy to define your view hierarchy while building constraints at the same time.
 
@@ -60,7 +60,7 @@ label.constrain(to: view).width(.lessThanOrEqual, constant: -60, priority: .defa
 //     └ label
 ```
 
-### Customizing constraints
+### Customizing Constraints
 
 SwiftLayout makes use of optional arguments to provide clean code when the constraint criteria of an `.equal` relationship, constant of 0, multiplier of 1, priority of `.required` are used and you want the constraint activated upon creation. To specify custom values, supply the appropriate method with an argument.
 
@@ -89,7 +89,7 @@ label.constrain(to: view).leadingTrailingTopBottom()
 label.constrain(to: view.layoutMarginsGuide).leadingTrailingTopBottom()
 ```
 
-### Defining different kinds of constraints
+### Defining Different Kinds of Constraints
 
 SwiftLayout has 3 main methods for creating different constraint builders suited for different tasks.
 
@@ -99,7 +99,7 @@ SwiftLayout has 3 main methods for creating different constraint builders suited
 
 - `constrainSelf()` returns a `SelfConstraintBuilder` which is great for constraining your view's width, height, or aspect ratio.
 
-### Getting constraints
+### Getting Constraints
 
 All three builders provide an array of their constaints in their created order.
 
@@ -120,13 +120,13 @@ let constraints = label.constrain(to: view).leadingTrailingTopBottom().constrain
 print(constraints.count) // 4
 ```
 
-### Note about left and right anchors
+### Note about Left and Right Anchors
 
 - Use leading and trailing
 - Don't use left/right
 - Look up that property and quote Apple
 
-### Tips, tricks, and gotchas
+### Tips, Tricks, and Gotchas
 
 - Work from the bottom up the hierarchy (there's a reason it's `constrain(after:)`)
 - Define constraints in view did load
