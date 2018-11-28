@@ -12,6 +12,8 @@ SwiftLayout helps you write AutoLayout constraints as simply as possible. Constr
 
 Here's why it exists *****************
 
+What it does, what it doesn't do *************
+
 ### Constraining a view to a parent view
 
 Start by thinking about which two views you want to affect. In this example, a label will be constrained to a `UIViewController`'s view and added to its hierarchy.
@@ -42,18 +44,20 @@ container.backgroundColor = .gray
 container.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
 container.constrain(to: view).centerXY()
 
-// Constraining this label to the layout margins guide of the container means we
+// Constrain a label to the layout margins guide of the container. This means we
 // get padding for free! No need to define constants in these constraints.
 let label = UILabel()
 label.constrain(to: container.layoutMarginsGuide).leadingTrailingTopBottom()
 
 // View hierarchy is now
-// view > container > label
+// view
+//  └ container
+//     └ label
 ```
 
 ### Customizing constraints
 
-SwiftLayout makes use of optional arguments to provide clean code when the constraint criteria of an `.equal` relationship, constant of 0, multiplier of 1, and priority of `.required` are used. To specify custom values, supply the appropriate method with an argument.
+SwiftLayout makes use of optional arguments to provide clean code when the constraint criteria of an `.equal` relationship, constant of 0, multiplier of 1, priority of `.required` are used and you want the constraint activated upon creation. To specify custom values, supply the appropriate method with an argument.
 
 ```swift
 // Simple leading padding of 16 points
@@ -82,31 +86,47 @@ label.constrain(to: view.layoutMarginsGuide).leadingTrailingTopBottom()
 
 ### Defining different kinds of constraints
 
-SwiftLayout has 3 main methods for creating constraint builders. 
+SwiftLayout has 3 main methods for creating different constraint builders suited for different tasks.
 
-- `constrain(to:)` returns a `RelationalConstraintBuilder` that is useful for embedding a view inside another and matching its anchors.
+- `constrain(to:)` returns a `RelationalConstraintBuilder` that is useful for embedding a view inside another and matching its anchors. In uncommon scenarios where you want to define a constraint between two different anchors, use this builder's `xAxis(_:to:)`, `yAxis(_:to:)`, and `dimension(_:to:)` methods.
 
-- `constrain(after:)` returns a `DistributiveConstraintBuilder` that only has a couple methods for placing this view vertically or horizontally after another.
+- `constrain(after:)` returns a `DistributiveConstraintBuilder` that has a couple methods for placing this view vertically or horizontally after another.
 
 - `constrainSelf()` returns a `SelfConstraintBuilder` which is great for constraining your view's width, height, or aspect ratio.
 
+### Getting constraints
+
+All three builders provide an array of their constaints in their created order.
+
 ```swift
-// You can always grab the created constraints in the order they were created by accessing its `constraints` property.
+// You can grab a reference to the builder itself...
 let builder = label.constrain(to: view).leading().centerY()
 print(builder.constraints.last!) // NSLayoutConstraint between centerY anchors
 
-// alternatively...
+// ...or just access the array of constraints directly!
 let constraint = label.constrain(to: view).centerY(constant: 0).constraints.last!
 
-// use the constraint later as needed   
+// Then use the constraint later as needed.
 constraint.constant = 100
+
+// Keep in mind some helper methods create multiple constraints in the order they're named.
+// This should be clear based on method name, and their documentation will specify constraint count.
+let constraints = label.constrain(to: view).leadingTrailingTopBottom().constraints
+print(constraints.count) // 4
 ```
 
-There are also shorthand methods for making constraints in common combinations like `leadingTrailing()`, `topBottom()`, `centerXY()` and `leadingTrailingTopBottom()`.
+### Note about leading and trailing
 
-### Advanced
+- Use leading and trailing
+- Don't use left/right
+- Look up that property and quote Apple
 
-For example,
+### Tips, tricks, and gotchas
+
+- Define constraints in view did load
+- Use accessibilityIdentifier
+- Use NSDirectionalEdgeInsets
+- Use layout guides
 
 ## Installation
 
@@ -133,10 +153,6 @@ github "SwiftKickMobile/SwiftLayout"
 1. On your app's target, add the SwiftLayout framework:
    1. as an embedded binary on the General tab.
    1. as a target dependency on the Build Phases tab.
-
-## Usage
-
-### Basics
 
 ## About SwiftKick Mobile
 We build high quality apps! [Get in touch](http://www.swiftkickmobile.com) if you need help with a project.
