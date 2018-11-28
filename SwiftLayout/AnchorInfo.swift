@@ -12,7 +12,7 @@ import UIKit
 
 /**
  Internal helper struct for supplying all required attributes for creating a constraint in one simple package.
- As a bonus, you can look up an `AnchorInfo<T>` via `Constraiable.anchorInfo(xAxis/yAxis/dimension:)`
+ As a bonus, you can look up an `AnchorInfo<T>` via `Constrainable.anchorInfo(xAxis/yAxis/dimension:)`
  */
 struct AnchorInfo<AnchorType: AnyObject> {
     var item: Constrainable
