@@ -132,7 +132,7 @@ constraint.isActive = true // smoosh!
 
 ### System Spacing
 
-You can specify constraints that use system spacing for their "constant" in iOS 11 and later. This is accomplished by an extension on `CGFloat` named `.systemSpacing` — which is a special placeholder value SwiftLayout will take into account when creating your constraint. This value has no use outside of SwiftLayout, and only works with the `constrain(to:)` builder.
+You can specify constraints that use system spacing for their "constant" in iOS 11 and later. This is accomplished by an extension on `CGFloat` named `.systemSpacing` — which is a special placeholder value SwiftLayout will take into account when creating your constraint. This value has no use outside of SwiftLayout, and does not work with the `constrainSelf()` builder.
 
 ```swift
 label.constrain(to: view).leadingTrailing(constant: .systemSpacing)
