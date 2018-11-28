@@ -10,9 +10,12 @@
 
 SwiftLayout helps you write AutoLayout constraints as simply as possible. Constrain `UIView` and `UILayoutGuide`s interchangeably with a familiar syntax named to match their native properties.
 
+Here's why it exists *****************
+
 ### Constraining a view to a parent view
 
 Start by thinking about which two views you want to affect. In this example, a label will be constrained to a `UIViewController`'s view.
+
 ```swift
 // UIViewController subclass
 override func viewDidLoad() {
@@ -26,13 +29,32 @@ override func viewDidLoad() {
    label.constrain(to: view).leading().centerY()
 }
 ```
-The `constrain(to:)` method performs several actions. The view calling it will have its `translatesAutoResizingMasksIntoConstraints` disabled, and will become a child of the second view if it doesn't yet have a parent. This makes it easy to define your view hierarchy while building constraints at the same time.
 
-There are also shorthand methods for making constraints in common combinations like `leadingTrailing()`, `topBottom()`, `centerXY()` and `leadingTrailingTopBottom()`.
+The `constrain(to:)` method performs a couple useful actions before any constraints are made. The view calling it will have its `translatesAutoResizingMasksIntoConstraints` disabled, and will become a child of the second view if it doesn't yet have a parent. This makes it easy to define your view hierarchy while building constraints at the same time.
 
 ### Customizing constraints
 
-It's also easy to customize constraints.
+SwiftLayout has 3 main methods for creating constraint builders. 
+
+- `constrain(to:)` returns a `RelationalConstraintBuilder` that is useful for embedding a view inside another and matching its anchors.
+
+- `constrain(after:)` returns a `DistributiveConstraintBuilder` that only has a couple methods for placing this view vertically or horizontally after another.
+
+- `constrainSelf()` returns a `SelfConstraintBuilder` which is great for constraining your view's width, height, or aspect ratio.
+
+```swift
+// You can always grab the created constraints in the order they were created by accessing its `constraints` property.
+let builder = label.constrain(to: view).leading().centerY()
+print(builder.constraints.last!) // NSLayoutConstraint between centerY anchors
+
+// alternatively...
+let constraint = label.constrain(to: view).centerY(constant: 0).constraints.last!
+
+// use the constraint later as needed   
+constraint.constant = 100
+```
+
+There are also shorthand methods for making constraints in common combinations like `leadingTrailing()`, `topBottom()`, `centerXY()` and `leadingTrailingTopBottom()`.
 
 ### Advanced
 
