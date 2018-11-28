@@ -14,25 +14,65 @@ Here's why it exists *****************
 
 ### Constraining a view to a parent view
 
-Start by thinking about which two views you want to affect. In this example, a label will be constrained to a `UIViewController`'s view.
+Start by thinking about which two views you want to affect. In this example, a label will be constrained to a `UIViewController`'s view and added to its hierarchy.
 
 ```swift
 // UIViewController subclass
 override func viewDidLoad() {
    super.viewDidLoad()
    
-   // create a label
+   // Create a label
    let label = UILabel()
    label.text = "SwiftLayout is neato!"
    
-   // constrain its leading and centerY anchors to be equal to our view's respective anchors
+   // Constrain its leading and centerY anchors to be equal to our view's respective anchors
+   // because label doesn't yet have a parent, it will become a child of view
    label.constrain(to: view).leading().centerY()
 }
 ```
 
 The `constrain(to:)` method performs a couple useful actions before any constraints are made. The view calling it will have its `translatesAutoResizingMasksIntoConstraints` disabled, and will become a child of the second view if it doesn't yet have a parent. This makes it easy to define your view hierarchy while building constraints at the same time.
 
+```swift
+let container = UIView()
+container.backgroundColor = .gray
+container.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+container.constrain(to: view).centerXY()
+
+// Constraining this label to the layout margins guide of the container means we
+// get padding for free! No need to define them in these constraints.
+let label = UILabel()
+label.constrain(to: container.layoutMarginsGuide).leadingTrailingTopBottom()
+
+// View hierarchy is now
+// view > container > label
+```
+
 ### Customizing constraints
+
+SwiftLayout makes use of optional arguments to provide clean code when the constraint criteria of an `.equal` relationship, constant of 0, multiplier of 1, and priority of `.required` are used. To specify custom values, supply the appropriate method with an argument.
+
+```swift
+// Simple left padding of 16 points
+label.constrain(to: view).leading(constant: 16)
+
+// Get as customized as you like!
+label.constrain(to: view).top(.greaterThanOrEqual, constant: 8, multiplier: 0.5, priority: .defaultLow)
+
+// In common scenarios where multiple constraints are defined together, 
+// helper methods create multiple constraints using the supplied arguments
+label.constrain(to: view).leadingTrailing(constant: 16).topBottom(constant: 8)
+
+// As a bonus, this makes it super easy to pin a view to a container,
+// become its child, and disable its resizing mask in a single line of code
+label.constrain(to: view).leadingTrailingTopBottom()
+
+// And as a bonus to that bonus, if you want the label to be constrained to
+// the view's margins inset from the safe area, use its margins layout guide!
+label.constrain(to: view.layoutMarginsGuide).leadingTrailingTopBottom()
+```
+
+### Defining different kinds of constraints
 
 SwiftLayout has 3 main methods for creating constraint builders. 
 
