@@ -10,20 +10,23 @@
 
 SwiftLayout helps you write AutoLayout constraints as simply as possible. Constrain `UIView` and `UILayoutGuide`s interchangeably with a familiar syntax named to match their native properties.
 
-### How it works
+### Constraining a view to a parent view
 
-Start by thinking about which two views and/or layout guides you want to affect. For starters, it's easy to create a label and constrain it to a view's anchors.
+Start by thinking about which two views you want to affect. In this example, a label will be constrained to a `UIViewController`'s view.
 ```swift
 // UIViewController subclass
 override func viewDidLoad() {
    super.viewDidLoad()
    
-   // create a label and constrain its leading, trailing, and centerY anchors to our view
+   // create a label
    let label = UILabel()
-   label.constrain(to: view).leading().trailing().centerY()
+   label.text = "SwiftLayout is neato!"
+   
+   // constrain its leading and centerY anchors to be equal to our view's respective anchors
+   label.constrain(to: view).leading().centerY()
 }
 ```
-Both `UIView` and `UILayoutGuide` have a `constrain(to:)` method for easily adding constraints between each other. This method handles initial setup by disabling `translatesAutoResizingMasksIntoConstraints` where needed and will make your first constrainable a child of the second if it doesn't yet have a `parentView` or `owningView`.
+The `constrain(to:)` method performs several actions. The view calling it will have its `translatesAutoResizingMasksIntoConstraints` disabled, and will become a child of the second view if it doesn't yet have a parent. This makes it easy to define your view hierarchy while building constraints at the same time.
 
 There are also shorthand methods for making constraints in common combinations like `leadingTrailing()`, `topBottom()`, `centerXY()` and `leadingTrailingTopBottom()`.
 
