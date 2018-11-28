@@ -8,11 +8,9 @@
 
 ## Overview
 
-SwiftLayout helps you write AutoLayout constraints as simply as possible. Constrain `UIView` and `UILayoutGuide`s interchangeably with a familiar syntax named to match their native properties.
+SwiftLayout helps you write AutoLayout constraints as consisely, Swiftly, and as natively as possible. Constrain `UIView` and `UILayoutGuide`s interchangeably with a familiar syntax named to match their native properties. This library purposefuly minimizes the repetitive code of defining view hierarchies and building constraints while maximizing constraint flexibility via optional parameters.
 
-Here's why it exists *****************
-
-What it does, what it doesn't do *************
+SwiftLayout is written to match the AutoLayout APIs as closely as possible, only wrapping types where it improves legibility and simplifies amount of written code. This means your knowledge of AutoLayout should translate directly into SwiftLayout, with minimal functionality introduced on top. SwiftLayout does not provide any custom closures or syntaxes for defining constraints, and prefers a functional proramming angle to keep things on a minimum number of lines.
 
 ## Usage
 
@@ -95,11 +93,11 @@ label.constrain(to: view.layoutMarginsGuide).leadingTrailingTopBottom()
 
 SwiftLayout has 3 main methods for creating different constraint builders suited for different tasks.
 
-- `constrain(to:)` returns a `RelationalConstraintBuilder` that is useful for embedding a view inside another and matching its anchors. In uncommon scenarios where you want to define a constraint between two different anchors, use this builder's `xAxis(_:to:)`, `yAxis(_:to:)`, and `dimension(_:to:)` methods.
+- `constrain(to:)` returns a [`RelationalConstraintBuilder`](./SwiftLayout/RelationalConstraintBuilder.swift) that is useful for embedding a view inside another and matching its anchors. In uncommon scenarios where you want to define a constraint between two different anchors, use this builder's `xAxis(_:to:)`, `yAxis(_:to:)`, and `dimension(_:to:)` methods.
 
-- `constrain(after:)` returns a `DistributiveConstraintBuilder` that has a couple methods for placing this view vertically or horizontally after another. This builder expects its views and layout guides to already have parents.
+- `constrain(after:)` returns a [`DistributiveConstraintBuilder`](./SwiftLayout/DistributiveConstraintBuilder.swift) that has a couple methods for placing this view vertically or horizontally after another. This builder expects its views and layout guides to already have parents.
 
-- `constrainSelf()` returns a `SelfConstraintBuilder` which is great for constraining your view's width, height, or aspect ratio.
+- `constrainSelf()` returns a [`SelfConstraintBuilder`](./SwiftLayout/SelfConstraintBuilder.swift) which is great for constraining your view's width, height, or aspect ratio.
 
 ### Getting Constraints
 
@@ -124,6 +122,7 @@ print(constraints.count) // 4
 
 ### Advanced Something
 
+- System spacing
 - Mention xAxis / yAxis / dimension custom stuff
 
 ## Ideology
