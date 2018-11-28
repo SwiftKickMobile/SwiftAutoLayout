@@ -122,16 +122,34 @@ print(constraints.count) // 4
 
 ### Advanced Something
 
-- System spacing
-- Mention xAxis / yAxis / dimension custom stuff
+You can specify constraints that use system spacing for their "constant" in iOS 11 and later. This is accomplished by an extension on `CGFloat` named `.systemSpacing` — which is a special placeholder value SwiftLayout will take into account when creating your constraint. This value has no use outside of SwiftLayout, and only works with the `constrain(to:)` builder.
+
+```swift
+label.constrain(to: view).leadingTrailing(constant: .systemSpacing)
+```
+
+In scenarios where you want to make a custom constraint between two different anchors, use the appropriate method after `constrain(to:)`. The need for specialized methods for `T` in `NSLayoutAnchor<T>` makes creating these custom constraints type-safe and more crash resistant.
+
+```swift
+// constrain label's centerXAnchor to view's leadingAnchor
+label.constrain(to: view).xAxis(.centerX, to: .leading)
+
+// constrain label's centerYAnchor to view's topAnchor
+label.constrain(to: view).yAxis(.centerY, to: .top)
+
+// constrain label's width to view's height
+label.constrain(to: view).dimension(.width, to: .height)
+```
 
 ## Ideology
 
 ### Note about Left and Right Anchors
 
-- Use leading and trailing
-- Don't use left/right
-- Look up that property and quote Apple
+SwiftLayout does not use left and right anchors. This simplifies x axis anchors usage by disallowing incorrect usage (mixing left and leading) and cleans up autocomplete. [Apple states](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/AnatomyofaConstraint.html) you should use leading and trailing anchors always, and in scenarios where you want your constraints to not be affected by language direction, change your view's [`semanticContentAttribute`](https://developer.apple.com/documentation/uikit/uiview/1622461-semanticcontentattribute).
+
+> Avoid using Left and Right attributes. Use Leading and Trailing instead. This allows the layout to adapt to the view’s reading direction.
+
+> By default the reading direction is determined based on the current language set by the user. However, you can override this where necessary. In iOS, set the [`semanticContentAttribute`](https://developer.apple.com/documentation/uikit/uiview/1622461-semanticcontentattribute) property on the view holding the constraint (the nearest common ancestor of all views affected by the constraint) to specify whether the content’s layout should be flipped when switching between left-to-right and right-to-left languages.
 
 ### Tips, Tricks, and Gotchas
 
