@@ -1,6 +1,6 @@
 //
 //  Constrainable.swift
-//  SwiftLayout
+//  SwiftAutoLayout
 //
 //  Created by Jake Sawyer on 8/30/18.
 //  Copyright © 2018 SwiftKick Mobile. All rights reserved.

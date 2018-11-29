@@ -1,6 +1,6 @@
 //
 //  CGFloat+SystemSpacing.swift
-//  SwiftLayout
+//  SwiftAutoLayout
 //
 //  Created by Jake Sawyer on 11/27/18.
 //  Copyright © 2018 SwiftKick Mobile. All rights reserved.
@@ -10,7 +10,7 @@ import UIKit
 
 public extension CGFloat {
     /**
-     This value is only useful when using SwiftLayout to define a constraint that should use system spacing.
+     This value is only useful when using SwiftAutoLayout to define a constraint that should use system spacing.
      It is a nonsense value of `-99999` in all other scenarios.
      
      ```

@@ -1,6 +1,6 @@
 //
 //  SelfConstraintBuilder.swift
-//  SwiftLayout
+//  SwiftAutoLayout
 //
 //  Created by Jake Sawyer on 10/23/18.
 //  Copyright © 2018 SwiftKick Mobile. All rights reserved.
@@ -39,9 +39,9 @@ public class SelfConstraintBuilder: ConstraintBuilder {
         
         var constant = rawConstant
         if #available(iOS 11, *), constant == .systemSpacing {
-            assertionFailure("[SwiftLayout] Unsupported usage of `CGFloat.systemSpacing` with `SelfConstraintBuilder`!")
+            assertionFailure("[SwiftAutoLayout] Unsupported usage of `CGFloat.systemSpacing` with `SelfConstraintBuilder`!")
             constant = 8
-            print("[SwiftLayout] Using `\(constant)` as a placeholder value instead of `.systemSpacing` in `SelfConstraintBuilder`!")
+            print("[SwiftAutoLayout] Using `\(constant)` as a placeholder value instead of `.systemSpacing` in `SelfConstraintBuilder`!")
         }
         let result: NSLayoutConstraint
         switch relation {

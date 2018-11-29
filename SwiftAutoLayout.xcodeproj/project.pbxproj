@@ -10,13 +10,13 @@
 		222201EB21A107C600F00B03 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 222201E821A107C600F00B03 /* README.md */; };
 		222201EC21A107C600F00B03 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 222201E921A107C600F00B03 /* LICENSE.md */; };
 		222201ED21A107C600F00B03 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 222201EA21A107C600F00B03 /* CHANGELOG.md */; };
-		22AEE38721A1056800295C85 /* SwiftLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 22AEE38521A1056800295C85 /* SwiftLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		22AEE38721A1056800295C85 /* SwiftAutoLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 22AEE38521A1056800295C85 /* SwiftAutoLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		22AEE39721A106DB00295C85 /* ConstraintBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AEE38D21A106DB00295C85 /* ConstraintBuilder.swift */; };
 		22AEE39A21A106DB00295C85 /* DistributiveConstraintBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AEE39021A106DB00295C85 /* DistributiveConstraintBuilder.swift */; };
 		22AEE39C21A106DB00295C85 /* RelationalConstraintBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AEE39221A106DB00295C85 /* RelationalConstraintBuilder.swift */; };
 		22AEE39E21A106DB00295C85 /* Constrainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AEE39421A106DB00295C85 /* Constrainable.swift */; };
 		22AEE3A021A106DB00295C85 /* SelfConstraintBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AEE39621A106DB00295C85 /* SelfConstraintBuilder.swift */; };
-		22AEE3A221A1078200295C85 /* SwiftLayout.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 22AEE3A121A1078200295C85 /* SwiftLayout.podspec */; };
+		22AEE3A221A1078200295C85 /* SwiftAutoLayout.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 22AEE3A121A1078200295C85 /* SwiftAutoLayout.podspec */; };
 		61374AF721ADF52500E543BC /* CGFloat+SystemSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61374AF621ADF52500E543BC /* CGFloat+SystemSpacing.swift */; };
 /* End PBXBuildFile section */
 
@@ -24,15 +24,15 @@
 		222201E821A107C600F00B03 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		222201E921A107C600F00B03 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		222201EA21A107C600F00B03 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
-		22AEE38221A1056800295C85 /* SwiftLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		22AEE38521A1056800295C85 /* SwiftLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftLayout.h; sourceTree = "<group>"; };
+		22AEE38221A1056800295C85 /* SwiftAutoLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftAutoLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		22AEE38521A1056800295C85 /* SwiftAutoLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftAutoLayout.h; sourceTree = "<group>"; };
 		22AEE38621A1056800295C85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22AEE38D21A106DB00295C85 /* ConstraintBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintBuilder.swift; sourceTree = "<group>"; };
 		22AEE39021A106DB00295C85 /* DistributiveConstraintBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistributiveConstraintBuilder.swift; sourceTree = "<group>"; };
 		22AEE39221A106DB00295C85 /* RelationalConstraintBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationalConstraintBuilder.swift; sourceTree = "<group>"; };
 		22AEE39421A106DB00295C85 /* Constrainable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constrainable.swift; sourceTree = "<group>"; };
 		22AEE39621A106DB00295C85 /* SelfConstraintBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfConstraintBuilder.swift; sourceTree = "<group>"; };
-		22AEE3A121A1078200295C85 /* SwiftLayout.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftLayout.podspec; sourceTree = "<group>"; };
+		22AEE3A121A1078200295C85 /* SwiftAutoLayout.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftAutoLayout.podspec; sourceTree = "<group>"; };
 		61374AF621ADF52500E543BC /* CGFloat+SystemSpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+SystemSpacing.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -50,24 +50,24 @@
 		22AEE37821A1056800295C85 = {
 			isa = PBXGroup;
 			children = (
-				22AEE38421A1056800295C85 /* SwiftLayout */,
+				22AEE38421A1056800295C85 /* SwiftAutoLayout */,
 				22AEE38321A1056800295C85 /* Products */,
 				222201E821A107C600F00B03 /* README.md */,
 				222201EA21A107C600F00B03 /* CHANGELOG.md */,
 				222201E921A107C600F00B03 /* LICENSE.md */,
-				22AEE3A121A1078200295C85 /* SwiftLayout.podspec */,
+				22AEE3A121A1078200295C85 /* SwiftAutoLayout.podspec */,
 			);
 			sourceTree = "<group>";
 		};
 		22AEE38321A1056800295C85 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				22AEE38221A1056800295C85 /* SwiftLayout.framework */,
+				22AEE38221A1056800295C85 /* SwiftAutoLayout.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		22AEE38421A1056800295C85 /* SwiftLayout */ = {
+		22AEE38421A1056800295C85 /* SwiftAutoLayout */ = {
 			isa = PBXGroup;
 			children = (
 				22AEE39421A106DB00295C85 /* Constrainable.swift */,
@@ -76,10 +76,10 @@
 				22AEE39221A106DB00295C85 /* RelationalConstraintBuilder.swift */,
 				22AEE39621A106DB00295C85 /* SelfConstraintBuilder.swift */,
 				61374AF621ADF52500E543BC /* CGFloat+SystemSpacing.swift */,
-				22AEE38521A1056800295C85 /* SwiftLayout.h */,
+				22AEE38521A1056800295C85 /* SwiftAutoLayout.h */,
 				22AEE38621A1056800295C85 /* Info.plist */,
 			);
-			path = SwiftLayout;
+			path = SwiftAutoLayout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -89,16 +89,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22AEE38721A1056800295C85 /* SwiftLayout.h in Headers */,
+				22AEE38721A1056800295C85 /* SwiftAutoLayout.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		22AEE38121A1056800295C85 /* SwiftLayout */ = {
+		22AEE38121A1056800295C85 /* SwiftAutoLayout */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 22AEE38A21A1056800295C85 /* Build configuration list for PBXNativeTarget "SwiftLayout" */;
+			buildConfigurationList = 22AEE38A21A1056800295C85 /* Build configuration list for PBXNativeTarget "SwiftAutoLayout" */;
 			buildPhases = (
 				22AEE37D21A1056800295C85 /* Headers */,
 				22AEE37E21A1056800295C85 /* Sources */,
@@ -109,9 +109,9 @@
 			);
 			dependencies = (
 			);
-			name = SwiftLayout;
-			productName = SwiftLayout;
-			productReference = 22AEE38221A1056800295C85 /* SwiftLayout.framework */;
+			name = SwiftAutoLayout;
+			productName = SwiftAutoLayout;
+			productReference = 22AEE38221A1056800295C85 /* SwiftAutoLayout.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -129,7 +129,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 22AEE37C21A1056800295C85 /* Build configuration list for PBXProject "SwiftLayout" */;
+			buildConfigurationList = 22AEE37C21A1056800295C85 /* Build configuration list for PBXProject "SwiftAutoLayout" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -141,7 +141,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				22AEE38121A1056800295C85 /* SwiftLayout */,
+				22AEE38121A1056800295C85 /* SwiftAutoLayout */,
 			);
 		};
 /* End PBXProject section */
@@ -153,7 +153,7 @@
 			files = (
 				222201EB21A107C600F00B03 /* README.md in Resources */,
 				222201EC21A107C600F00B03 /* LICENSE.md in Resources */,
-				22AEE3A221A1078200295C85 /* SwiftLayout.podspec in Resources */,
+				22AEE3A221A1078200295C85 /* SwiftAutoLayout.podspec in Resources */,
 				222201ED21A107C600F00B03 /* CHANGELOG.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,14 +310,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = SwiftLayout/Info.plist;
+				INFOPLIST_FILE = SwiftAutoLayout/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = it.swiftkick.SwiftLayout;
+				PRODUCT_BUNDLE_IDENTIFIER = it.swiftkick.SwiftAutoLayout;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -337,14 +337,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = SwiftLayout/Info.plist;
+				INFOPLIST_FILE = SwiftAutoLayout/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = it.swiftkick.SwiftLayout;
+				PRODUCT_BUNDLE_IDENTIFIER = it.swiftkick.SwiftAutoLayout;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
@@ -355,7 +355,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		22AEE37C21A1056800295C85 /* Build configuration list for PBXProject "SwiftLayout" */ = {
+		22AEE37C21A1056800295C85 /* Build configuration list for PBXProject "SwiftAutoLayout" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				22AEE38821A1056800295C85 /* Debug */,
@@ -364,7 +364,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		22AEE38A21A1056800295C85 /* Build configuration list for PBXNativeTarget "SwiftLayout" */ = {
+		22AEE38A21A1056800295C85 /* Build configuration list for PBXNativeTarget "SwiftAutoLayout" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				22AEE38B21A1056800295C85 /* Debug */,

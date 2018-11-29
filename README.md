@@ -1,20 +1,20 @@
-# SwiftLayout
+# SwiftAutoLayout
 
 [![Twitter: @TimothyMoose](https://img.shields.io/badge/contact-@TimothyMoose-blue.svg?style=flat)](https://twitter.com/TimothyMoose)
-[![Version](https://img.shields.io/cocoapods/v/SwiftLayout.svg?style=flat)](http://cocoadocs.org/docsets/SwiftLayout)
-[![License](https://img.shields.io/cocoapods/l/SwiftLayout.svg?style=flat)](http://cocoadocs.org/docsets/SwiftLayout)
-[![Platform](https://img.shields.io/cocoapods/p/SwiftLayout.svg?style=flat)](http://cocoadocs.org/docsets/SwiftLayout)
+[![Version](https://img.shields.io/cocoapods/v/SwiftAutoLayout.svg?style=flat)](http://cocoadocs.org/docsets/SwiftAutoLayout)
+[![License](https://img.shields.io/cocoapods/l/SwiftAutoLayout.svg?style=flat)](http://cocoadocs.org/docsets/SwiftAutoLayout)
+[![Platform](https://img.shields.io/cocoapods/p/SwiftAutoLayout.svg?style=flat)](http://cocoadocs.org/docsets/SwiftAutoLayout)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 <p align="center">
-  <img src="./Design/SwiftLayoutBanner.gif" />
+  <img src="./Design/SwiftAutoLayoutBanner.gif" />
 </p>
 
 ## Overview
 
-SwiftLayout helps you write AutoLayout constraints as consisely, Swiftly, and as natively as possible. Constrain `UIView` and `UILayoutGuide`s interchangeably with a familiar syntax named to match their native properties. This library purposefuly minimizes the repetitive code of defining view hierarchies and building constraints while maximizing constraint flexibility via optional parameters.
+SwiftAutoLayout helps you write AutoLayout constraints as consisely, Swiftly, and as natively as possible. Constrain `UIView` and `UILayoutGuide`s interchangeably with a familiar syntax named to match their native properties. This library purposefuly minimizes the repetitive code of defining view hierarchies and building constraints while maximizing constraint flexibility via optional parameters.
 
-SwiftLayout is written to match the AutoLayout APIs as closely as possible, only wrapping types where it improves legibility and simplifies amount of written code. This means your knowledge of AutoLayout directly translates to SwiftLayout, with minimal functionality introduced on top. SwiftLayout does not provide any custom closures or syntaxes for defining constraints, and prefers a functional proramming angle to keep things on a minimum number of lines.
+SwiftAutoLayout is written to match the AutoLayout APIs as closely as possible, only wrapping types where it improves legibility and simplifies amount of written code. This means your knowledge of AutoLayout directly translates to SwiftAutoLayout, with minimal functionality introduced on top. SwiftAutoLayout does not provide any custom closures or syntaxes for defining constraints, and prefers a functional proramming angle to keep things on a minimum number of lines.
 
 ## Usage
 
@@ -29,7 +29,7 @@ override func viewDidLoad() {
    
    // Create a label
    let label = UILabel()
-   label.text = "SwiftLayout is neato!"
+   label.text = "SwiftAutoLayout is neato!"
    
    // Constrain its leading and centerY anchors to be equal to our view's respective anchors
    // Because label doesn't yet have a parent, it will become a child of our view
@@ -57,7 +57,7 @@ let label = UILabel()
 label.constrain(to: container.layoutMarginsGuide).leadingTrailingTopBottom()
 
 // Ensure the label doesn't get wider than our view within a constant. 
-// Since label is a child of container by this point, SwiftLayout doesn't set its parent.
+// Since label is a child of container by this point, SwiftAutoLayout doesn't set its parent.
 label.constrain(to: view).width(.lessThanOrEqual, constant: -60, priority: .defaultHigh)
 
 // The view hierarchy is now:
@@ -68,7 +68,7 @@ label.constrain(to: view).width(.lessThanOrEqual, constant: -60, priority: .defa
 
 ### Customizing Constraints
 
-SwiftLayout makes use of optional arguments to provide clean code when the constraint criteria is an `.equal` relationship, has a constant of 0, multiplier of 1, priority of `.required` and should activate the constraint upon creation. To specify custom values, supply the appropriate method with an argument.
+SwiftAutoLayout makes use of optional arguments to provide clean code when the constraint criteria is an `.equal` relationship, has a constant of 0, multiplier of 1, priority of `.required` and should activate the constraint upon creation. To specify custom values, supply the appropriate method with an argument.
 
 ```swift
 // Simple leading padding of 16 points
@@ -97,13 +97,13 @@ label.constrain(to: view.layoutMarginsGuide).leadingTrailingTopBottom()
 
 ### Defining Different Kinds of Constraints
 
-SwiftLayout has 3 main methods for creating different constraint builders suited for different tasks.
+SwiftAutoLayout has 3 main methods for creating different constraint builders suited for different tasks.
 
-- `constrain(to:)` returns a [`RelationalConstraintBuilder`](./SwiftLayout/RelationalConstraintBuilder.swift) that is useful for embedding a view inside another and creating constraints that match anchors. In uncommon scenarios where you want to define a constraint between two different anchors, use this builder's `xAxis(_:to:)`, `yAxis(_:to:)`, and `dimension(_:to:)` methods.
+- `constrain(to:)` returns a [`RelationalConstraintBuilder`](./SwiftAutoLayout/RelationalConstraintBuilder.swift) that is useful for embedding a view inside another and creating constraints that match anchors. In uncommon scenarios where you want to define a constraint between two different anchors, use this builder's `xAxis(_:to:)`, `yAxis(_:to:)`, and `dimension(_:to:)` methods.
 
-- `constrain(after:)` returns a [`DistributiveConstraintBuilder`](./SwiftLayout/DistributiveConstraintBuilder.swift) that has a couple methods for placing this view vertically or horizontally after another. This builder expects its views and layout guides to already have parents.
+- `constrain(after:)` returns a [`DistributiveConstraintBuilder`](./SwiftAutoLayout/DistributiveConstraintBuilder.swift) that has a couple methods for placing this view vertically or horizontally after another. This builder expects its views and layout guides to already have parents.
 
-- `constrainSelf()` returns a [`SelfConstraintBuilder`](./SwiftLayout/SelfConstraintBuilder.swift) which is great for constraining your view's width, height, or aspect ratio.
+- `constrainSelf()` returns a [`SelfConstraintBuilder`](./SwiftAutoLayout/SelfConstraintBuilder.swift) which is great for constraining your view's width, height, or aspect ratio.
 
 ### Getting Constraints
 
@@ -136,7 +136,7 @@ constraint.isActive = true // smoosh!
 
 ### System Spacing
 
-You can specify constraints that use system spacing for their "constant" in iOS 11 and later. This is accomplished by an extension on `CGFloat` named `.systemSpacing` — which is a special placeholder value SwiftLayout will take into account when creating your constraint. This value has no use outside of SwiftLayout, and does not work with the `constrainSelf()` builder.
+You can specify constraints that use system spacing for their "constant" in iOS 11 and later. This is accomplished by an extension on `CGFloat` named `.systemSpacing` — which is a special placeholder value SwiftAutoLayout will take into account when creating your constraint. This value has no use outside of SwiftAutoLayout, and does not work with the `constrainSelf()` builder.
 
 ```swift
 label.constrain(to: view).leadingTrailing(constant: .systemSpacing)
@@ -161,7 +161,7 @@ label.constrain(to: view).dimension(.width, to: .height)
 
 ### Note about Left and Right Anchors
 
-SwiftLayout does not use left and right anchors. This simplifies x axis anchors usage by disallowing incorrect usage (mixing left and leading) and cleans up autocomplete. [Apple states](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/AnatomyofaConstraint.html) you should use leading and trailing anchors always, and in scenarios where you want your constraints to not be affected by language direction, change your view's [`semanticContentAttribute`](https://developer.apple.com/documentation/uikit/uiview/1622461-semanticcontentattribute).
+SwiftAutoLayout does not use left and right anchors. This simplifies x axis anchors usage by disallowing incorrect usage (mixing left and leading) and cleans up autocomplete. [Apple states](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/AnatomyofaConstraint.html) you should use leading and trailing anchors always, and in scenarios where you want your constraints to not be affected by language direction, change your view's [`semanticContentAttribute`](https://developer.apple.com/documentation/uikit/uiview/1622461-semanticcontentattribute).
 
 > Avoid using Left and Right attributes. Use Leading and Trailing instead. This allows the layout to adapt to the view’s reading direction. 
 
@@ -171,7 +171,7 @@ SwiftLayout does not use left and right anchors. This simplifies x axis anchors 
 
 ### Custom Parents
 
-If you have a special scenario where you want a view's parent to not be set when using `constrain(to:)`, just set its parent beforehand. SwiftLayout's goal is to simplify hierarchy generation and ensure a view has a parent when constraints are created, and it will not change a hierarchy once it exists.
+If you have a special scenario where you want a view's parent to not be set when using `constrain(to:)`, just set its parent beforehand. SwiftAutoLayout's goal is to simplify hierarchy generation and ensure a view has a parent when constraints are created, and it will not change a hierarchy once it exists.
 
 ### Work from the Bottom Up
 
@@ -187,7 +187,7 @@ As a reminder, setting a view's [`accessibilityIdentifier`](https://developer.ap
 
 ### Use Layout Guides!
 
-`UILayoutGuide`s are awesome. If you set up your views correctly and use their [`directionalLayoutMargins`](https://developer.apple.com/documentation/uikit/uiview/2865930-directionallayoutmargins) you can write elegant constraints with minimal constants. Since SwiftLayout doesn't use left and right anchors, it's recommended to use [`NSDirectionalEdgeInsets`](https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsets) when setting up your layout guides.
+`UILayoutGuide`s are awesome. If you set up your views correctly and use their [`directionalLayoutMargins`](https://developer.apple.com/documentation/uikit/uiview/2865930-directionallayoutmargins) you can write elegant constraints with minimal constants. Since SwiftAutoLayout doesn't use left and right anchors, it's recommended to use [`NSDirectionalEdgeInsets`](https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsets) when setting up your layout guides.
 
 You can also create new layout guides instead of views when you need to simplify view layout.
 
@@ -207,9 +207,9 @@ zip(buttons, [0.5, 1.0, 1.5]) { (button, multiplier)
 
 ## Room for Improvement
 
-As of now, SwiftLayout does not support AppKit, but is open to pull requests!
+As of now, SwiftAutoLayout does not support AppKit, but is open to pull requests!
 
-SwiftLayout only supports anchors that both `UIView` and `UILayoutGuide` have, so `firstBaselineAnchor` and `lastBaselineAnchor` (which only exist on `UIView`) are not yet supported. Again, pull requests are welcome!
+SwiftAutoLayout only supports anchors that both `UIView` and `UILayoutGuide` have, so `firstBaselineAnchor` and `lastBaselineAnchor` (which only exist on `UIView`) are not yet supported. Again, pull requests are welcome!
 
 ## Installation
 
@@ -218,7 +218,7 @@ SwiftLayout only supports anchors that both `UIView` and `UILayoutGuide` have, s
 Add the following line to your Podfile:
 
 ````ruby
-pod 'SwiftLayout'
+pod 'SwiftAutoLayout'
 ````
 
 ### Carthage
@@ -226,14 +226,14 @@ pod 'SwiftLayout'
 Add the following line to your Cartfile:
 
 ````ruby
-github "SwiftKickMobile/SwiftLayout"
+github "SwiftKickMobile/SwiftAutoLayout"
 ````
 
 ### Manual
 
-1. Put SwiftLayout repo somewhere in your project directory.
-1. In Xcode, add `SwiftLayout.xcodeproj` to your project.
-1. On your app's target, add the SwiftLayout framework:
+1. Put SwiftAutoLayout repo somewhere in your project directory.
+1. In Xcode, add `SwiftAutoLayout.xcodeproj` to your project.
+1. On your app's target, add the SwiftAutoLayout framework:
    1. as an embedded binary on the General tab.
    1. as a target dependency on the Build Phases tab.
 
@@ -242,4 +242,4 @@ We build high quality apps! [Get in touch](http://www.swiftkickmobile.com) if yo
 
 ## License
 
-SwiftLayout is distributed under the MIT license. [See LICENSE](./LICENSE.md) for details.
+SwiftAutoLayout is distributed under the MIT license. [See LICENSE](./LICENSE.md) for details.
