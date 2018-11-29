@@ -1,9 +1,9 @@
 # SwiftLayout
 
 [![Twitter: @TimothyMoose](https://img.shields.io/badge/contact-@TimothyMoose-blue.svg?style=flat)](https://twitter.com/TimothyMoose)
-[![Version](https://img.shields.io/cocoapods/v/SwiftMessages.svg?style=flat)](http://cocoadocs.org/docsets/SwiftMessages)
-[![License](https://img.shields.io/cocoapods/l/SwiftMessages.svg?style=flat)](http://cocoadocs.org/docsets/SwiftMessages)
-[![Platform](https://img.shields.io/cocoapods/p/SwiftMessages.svg?style=flat)](http://cocoadocs.org/docsets/SwiftMessages)
+[![Version](https://img.shields.io/cocoapods/v/SwiftLayout.svg?style=flat)](http://cocoadocs.org/docsets/SwiftLayout)
+[![License](https://img.shields.io/cocoapods/l/SwiftLayout.svg?style=flat)](http://cocoadocs.org/docsets/SwiftLayout)
+[![Platform](https://img.shields.io/cocoapods/p/SwiftLayout.svg?style=flat)](http://cocoadocs.org/docsets/SwiftLayout)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 <p align="center">
@@ -242,4 +242,4 @@ We build high quality apps! [Get in touch](http://www.swiftkickmobile.com) if yo
 
 ## License
 
-SwiftMessages is distributed under the MIT license. [See LICENSE](./LICENSE.md) for details.
+SwiftLayout is distributed under the MIT license. [See LICENSE](./LICENSE.md) for details.
