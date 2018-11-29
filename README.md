@@ -103,7 +103,7 @@ SwiftLayout has 3 main methods for creating different constraint builders suited
 
 ### Getting Constraints
 
-All three builders provide an array of their constaints in their created order.
+All three builders provide an array of their constraints in their created order.
 
 ```swift
 // You can grab a reference to the builder itself...
@@ -173,13 +173,13 @@ If you have a special scenario where you want a view's parent to not be set when
 
 When defining your view hierarchy, it's best to start by defining and constraining the first views to become children of your root view and constraining children views after. In general, you want to use `constrain(to:)` before you use `constrain(after:)` since the latter expects both views/layout guides to have parents. `constrainSelf()` can be called at any time, the view doesn't need a parent for a self constraint.
 
-### Define Constraints Conistently
+### Define Constraints Consistently
 
-It's easy to attempt to compartmentalize all your constraint code with your view setup code, but it is recommended to set up all of your constraints in a place where your root view controller has a parent. For view controllers, set up your constraints in `viewDidLoad()` or later, and avoid defining constraints in a `UIView` or `UIViewController` initializer.
+It's easy to attempt to compartmentalize all your constraint code with your view setup code, but it is recommended to set up all of your constraints in a place where your root view has a parent. For view controllers, set up your constraints in `viewDidLoad()` or later, and avoid defining constraints in a `UIView` or `UIViewController` initializer.
 
 ### Debugging Constraint Issues
 
-As a reminder, setting a view's [`accessibilityIdentifier`](https://developer.apple.com/documentation/uikit/uiaccessibilityidentification/1623132-accessibilityidentifier) to a concise string will help you identify problem views when constrain errors are printed.
+As a reminder, setting a view's [`accessibilityIdentifier`](https://developer.apple.com/documentation/uikit/uiaccessibilityidentification/1623132-accessibilityidentifier) to a concise string will help you identify problem views when constraint errors are printed.
 
 ### Use Layout Guides!
 
@@ -188,6 +188,8 @@ As a reminder, setting a view's [`accessibilityIdentifier`](https://developer.ap
 You can also create new layout guides instead of views when you need to simplify view layout.
 
 ```swift
+// Create a layout guide that will determine a height in which some buttons
+// will be spread out along the x axis, and centered on the y axis
 let buttonsLayoutGuide = UILayoutGuide()
 buttonsLayoutGuide.constrain(to: view.layoutMarginsGuide).leadingTrailing().bottom()
 buttonsLayoutGuide.constrainSelf().height(constant: 60)
@@ -203,7 +205,7 @@ zip(buttons, [0.5, 1.0, 1.5]) { (button, multiplier)
 
 As of now, SwiftLayout does not support AppKit, but is open to pull requests!
 
-SwiftLayout does not support anchors that both `UIView` and `UILayoutGuide` have, so `firstBaselineAnchor` and `lastBaselineAnchor` are not yet supported. Again, pull requests are welcome!
+SwiftLayout only supports anchors that both `UIView` and `UILayoutGuide` have, so `firstBaselineAnchor` and `lastBaselineAnchor` (which only exist on `UIView`) are not yet supported. Again, pull requests are welcome!
 
 ## Installation
 
